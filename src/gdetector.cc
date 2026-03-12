@@ -80,7 +80,8 @@ std::vector<std::string> Source::available_sources() {
 
 void Source::set_name(const std::string &name) {
   const bool available =
-      std::ranges::find(available_sources_, name) != available_sources_.end();
+    std::find(available_sources_.begin(), available_sources_.end(), name) != available_sources_.end();
+      // std::ranges::find(available_sources_, name) != available_sources_.end();
   if (!available) {
     throw std::invalid_argument("Source name is not available");
   }
@@ -124,7 +125,9 @@ int Detector::counts() const {
 void Detector::On() { is_on_ = true; }
 void Detector::Off() { is_on_ = false; }
 void Detector::set_type(const std::string &type) {
-  const bool available = std::ranges::find(available_detectors_, type) != available_detectors_.end();
+  const bool available =
+    std::find(available_detectors_.begin(), available_detectors_.end(), type) != available_detectors_.end();
+    // std::ranges::find(available_detectors_, type) != available_detectors_.end();
   if (!available) {
     throw std::invalid_argument("Detector type is not available");
   }

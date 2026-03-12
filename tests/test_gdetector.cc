@@ -46,7 +46,7 @@ protected:
   const std::string kName1_ = "Na-22";
   const std::string kName2_ = "Balalalalalala";
   const std::string kName3_ = "Pu-268";
-  std::vector<std::string> alternative_sources = {kName3_, "Am-234"};
+  std::vector<std::string> alternative_sources_ = {kName3_, "Am-234"};
   time_t timestamp1_ = time(nullptr);
   const double kActivity1_ = 98.7899;
 
@@ -70,7 +70,7 @@ TEST_F(SourceTest, TestInputValidation) {
   EXPECT_THROW(source1_.set_name(kName3_), std::invalid_argument);
 
   // Changing available source list
-  detector::Source::set_available_sources(alternative_sources);
+  detector::Source::set_available_sources(alternative_sources_);
   source1_.set_name(kName3_);
 
   // Revert to default to avoid corruption

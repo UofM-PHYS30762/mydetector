@@ -24,7 +24,7 @@ They have the following properties:
 - `On()` and `Off()`: Methods to turn on and off the detector
 - `Detect(&source)`: Method to detect the activity of a given source
 
-[!NOTE]
+> [!NOTE]
 > The detector must be turned on before it can detect the activity of a source.
 
 ## Basic usage

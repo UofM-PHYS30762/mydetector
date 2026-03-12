@@ -1,4 +1,4 @@
-#include "../include/gdetector/gdetector.h"
+#include "gdetector/gdetector.h"
 
 #include <iomanip>
 #include <iostream>
@@ -29,8 +29,8 @@ std::string UUID4() {
 
   static std::uniform_int_distribution<uint64_t> dist;
 
-  uint64_t upper = dist(gen);  // random_a, ver and random_b
-  uint64_t lower = dist(gen);  // var and random_c
+  uint64_t upper = dist(gen); // random_a, ver and random_b
+  uint64_t lower = dist(gen); // var and random_c
 
   // Set version (0b0100, 4)
   upper = (upper & 0xFFFFFFFFFFFF0FFFULL) | 0x0000000000004000ULL;
@@ -79,11 +79,10 @@ std::vector<std::string> Source::available_sources() {
 }
 
 void Source::set_name(const std::string &name) {
-  bool available =
-      std::find(available_sources_.begin(), available_sources_.end(), name) !=
-      available_sources_.end();
+  const bool available =
+      std::ranges::find(available_sources_, name) != available_sources_.end();
   if (!available) {
-    throw std::runtime_error("Source name is not available");
+    throw std::invalid_argument("Source name is not available");
   }
   name_ = name;
 }
@@ -138,4 +137,4 @@ void Detector::Detect(const Source &source) {
 
   counts_ = dist(gen);
 }
-}  // namespace detector
+} // namespace detector

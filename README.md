@@ -28,19 +28,54 @@ They have the following properties:
 > The detector must be turned on before it can detect the activity of a source.
 
 ## Basic usage
-
+### `Source`
 ```c++
 #include <iostream>
 #include <gdetector/gdetector.h>
-
-// === Instantiate a Source ===
-// Use default constructor
-
-detector::Source source1;
-
-source
+int main() {
+  std::cout << "=== Source Demo === \n";
+  // === Instantiate a Source ===
+  // Use default constructor
+  detector::Source source1;
+  source1.set_name("Na-22");
+  source1.set_date(time(nullptr));
+  source1.set_activity(98.7899);
+  
+  // Use constructor with arguments
+  detector::Source source2("Cs-136", time(nullptr), 12.3456);
+  
+  // === Access attributes ===
+  std::cout << source1.name() << "\n";
+  std::cout << source2.activity() << "\n";
+  std::cout << source2.id() << "\n";
+  std::cout << source2.date() << "\n";
+  
+  // === Print source ===
+  std::cout << source1 << "\n";
+  std::cout << source2 << "\n";
+  
+  // === Modify available sources ===
+  std::vector<std::string> alternative_sources = {"Pu-268", "Am-234"};
+  detector::Source::set_available_sources(alternative_sources);
+  source1.set_name("Pu-268");
+  // Revert to default to avoid corruption
+  detector::Source::set_available_sources({"Na-22", "Cs-136", "Co-92"});
+}
 ```
 
+### `Detector`
+```c++
+std::cout << "=== Detector Demo === \n";
+detector::Detector detector;
+detector.set_type("Geiger");
+detector.On();
+
+time_t timestamp1;
+time(&timestamp1);
+detector::Source source("Cs-136", timestamp1, 123.456);
+detector.Detect(source);
+std::cout << "Detected " <<detector.counts() << std::endl;
+```
 ## Add `gdetector` to your project
 
 ```bash

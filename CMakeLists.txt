@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 4.2)
-project(mydetector)
+project(gdetector)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(mydetector)
-target_sources(mydetector
+add_library(gdetector)
+target_sources(gdetector
         PRIVATE
         src/gdetector.cc
 
@@ -14,7 +14,7 @@ target_sources(mydetector
         FILES
         include/gdetector/gdetector.h
 )
-target_include_directories(mydetector
+target_include_directories(gdetector
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

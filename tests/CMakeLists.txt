@@ -13,7 +13,7 @@ add_executable(
 )
 target_link_libraries(
         tests
-        mydetector
+        gdetector
         GTest::gtest_main
 )
 

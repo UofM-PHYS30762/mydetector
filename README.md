@@ -1,4 +1,14 @@
 # Library for assignment 3: `gdetector`
+This library is a demo library for assignment 3.
+The core features are a `Source` and a `Detector` class.
+
+They have the following properties:
+##### `Source`
+`name`
+: the name of the source must be one of 
+
+`date`
+: Acquisition date
 
 ## Basic usage
 

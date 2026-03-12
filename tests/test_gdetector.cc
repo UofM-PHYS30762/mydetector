@@ -50,7 +50,7 @@ protected:
   time_t timestamp1_ = time(nullptr);
   const double kActivity1_ = 98.7899;
 
-  detector::Source source1_;
+  detector::Source source1_{};
   detector::Source source2_ =
       detector::Source(kName1_, timestamp1_, kActivity1_);
 };

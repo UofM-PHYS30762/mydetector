@@ -66,6 +66,7 @@ class Detector {
   std::string type_{};
   bool is_on_ = false;
   int counts_{};
+ static std::vector<std::string> available_detectors_;
 
  public:
   // Constructors and destructors

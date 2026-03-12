@@ -102,9 +102,11 @@ std::ostream &operator<<(std::ostream &os, const Source &source) {
   return os;
 }
 // @class Detector
-
+std::vector<std::string> Detector::available_detectors_ = {"Scintillator", "Geiger", "Germanium"};
 // Constructors and destructors
-Detector::Detector(const std::string &type) { type_ = type; }
+Detector::Detector(const std::string &type) {
+  set_type(type);
+}
 Detector::~Detector() {
   std::cout << "Releasing memory in Detector" << std::endl;
 }
@@ -121,7 +123,13 @@ int Detector::counts() const {
 
 void Detector::On() { is_on_ = true; }
 void Detector::Off() { is_on_ = false; }
-void Detector::set_type(const std::string &type) { type_ = type; }
+void Detector::set_type(const std::string &type) {
+  const bool available = std::ranges::find(available_detectors_, type) != available_detectors_.end();
+  if (!available) {
+    throw std::invalid_argument("Detector type is not available");
+  }
+  type_ = type;
+}
 
 // Other methods
 void Detector::Detect(const Source &source) {

@@ -1,10 +1,10 @@
 #ifndef ASSIGNMENT_3_GDETECTOR_H
 #define ASSIGNMENT_3_GDETECTOR_H
 
+#include <algorithm>
 #include <ctime>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 /**
  * @class Source
@@ -28,19 +28,19 @@ namespace detector {
  * - The unique ID is automatically generated in UUID4 format.
  */
 class Source {
- private:
-  std::string name_{};  // Source name. e.g. Na-22, Cs-136, Co-92
-  time_t date_{};       // Date of source acquisition
-  double activity_{};   // Source activity at the time of acquisition (Bq/kg)
-  std::string id_{};    // Unique ID of the source
+private:
+  std::string name_{}; // Source name. e.g. Na-22, Cs-136, Co-92
+  time_t date_{};      // Date of source acquisition
+  double activity_{};  // Source activity at the time of acquisition (Bq/kg)
+  std::string id_{};   // Unique ID of the source
 
   static std::vector<std::string> available_sources_;
 
- public:
+public:
   // Constructor and destructors
   explicit Source();
-  explicit Source(const std::string& name, const time_t& date,
-                  const double& activity);
+  explicit Source(const std::string &name, const time_t &date,
+                  const double &activity);
   ~Source();
 
   // Getters and setters
@@ -50,29 +50,29 @@ class Source {
   [[nodiscard]] std::string id() const;
   [[nodiscard]] static std::vector<std::string> available_sources();
 
-  void set_name(const std::string& name);
-  void set_date(const time_t& date);
-  void set_activity(const double& activity);
-  static void set_available_sources(const std::vector<std::string>& sources);
+  void set_name(const std::string &name);
+  void set_date(const time_t &date);
+  void set_activity(const double &activity);
+  static void set_available_sources(const std::vector<std::string> &sources);
 
   // Printers
-  friend std::ostream& operator<<(std::ostream& os, const Source& source);
+  friend std::ostream &operator<<(std::ostream &os, const Source &source);
 };
 /**
  * @class Detector
  * @brief
  */
 class Detector {
- private:
+private:
   std::string type_{};
   bool is_on_ = false;
   int counts_{};
- static std::vector<std::string> available_detectors_;
+  static std::vector<std::string> available_detectors_;
 
- public:
+public:
   // Constructors and destructors
   explicit Detector() = default;
-  explicit Detector(const std::string& type);
+  explicit Detector(const std::string &type);
   ~Detector();
 
   // Getters and setters
@@ -82,13 +82,14 @@ class Detector {
 
   void On();
   void Off();
-  void set_type(const std::string& type);
- static void set_available_detectors(const std::vector<std::string>& detectors);
+  void set_type(const std::string &type);
+  static void
+  set_available_detectors(const std::vector<std::string> &detectors);
 
   // Other methods
-  void Detect(const Source& source);
+  void Detect(const Source &source);
 };
 
-}  // namespace detector
+} // namespace detector
 
-#endif  // ASSIGNMENT_3_GDETECTOR_H
+#endif // ASSIGNMENT_3_GDETECTOR_H

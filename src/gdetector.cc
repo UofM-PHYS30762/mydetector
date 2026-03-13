@@ -137,7 +137,10 @@ void Detector::set_type(const std::string &type) {
   }
   type_ = type;
 }
-
+void Detector::set_available_detectors(const std::vector<std::string>
+  &detectors) {
+  available_detectors_ = detectors;
+}
 // Other methods
 void Detector::Detect(const Source &source) {
   // Device power status check

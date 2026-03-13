@@ -83,6 +83,7 @@ class Detector {
   void On();
   void Off();
   void set_type(const std::string& type);
+ static void set_available_detectors(const std::vector<std::string>& detectors);
 
   // Other methods
   void Detect(const Source& source);
